@@ -20,6 +20,7 @@
 
         <button class="copy-btn" onclick="copiarAlias()">📋 Copiar alias</button>
         <button class="mp-btn" onclick="abrirMP()">💸 Abrir en MercadoPago</button>
+        <button class="mp-btn" onclick="abrirMP()">💸 Abrir en NaranjaX</button>
         <button id="installBtn">📲 Instalar Sherpa</button>
     </div>
     <div id="iosTip" style="display: none;">
@@ -50,6 +51,10 @@
 
     function abrirMP() {
         window.location.href = "mercadopago://transfer";
+    }
+
+    function abrirNx() {
+      window.location.href = "https://app.naranjax.com";
     }
 </script>
 </body>
