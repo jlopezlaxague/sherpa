@@ -1,78 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-    <link rel="manifest" href="manifest.json" />
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js');
-        }
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recordatorio de Pago</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 20px;
-            background: #f9f9f9;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello World PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#ffffff" />
 
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .copy-btn {
-            background-color: #50007e;
-            color: #fff;
-        }
-
-        .mp-btn {
-            background-color: #ff5200;
-            color: #fff;
-        }
-    </style>
+  <!-- Íconos locales -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
 </head>
-
 <body>
-    <div class="container">
-        <h2>Recordatorio de pago v3</h2>
-        <p><strong>Monto:</strong> $100</p>
-        <p><strong>Alias:</strong> ine.y.joaco</p>
+  <h1>Hello World 🌍</h1>
 
-        <button class="copy-btn" onclick="copiarAlias()">📋 Copiar alias</button>
-        <button class="mp-btn" onclick="abrirMP()">💸 Abrir en MercadoPago</button>
-        <button id="installBtn">📲 Instalar Sherpa</button>
-    </div>
-
-    <script>
-        function copiarAlias() {
-            navigator.clipboard.writeText("ine.y.joaco")
-                .then(() => alert("Alias copiado ✅"))
-                .catch(err => alert("Error al copiar 😞"));
-        }
-
-        function abrirMP() {
-            window.location.href = "mercadopago://transfer";
-        }
-    </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('✔ Service Worker registrado'))
+        .catch(err => console.error('✖ Error al registrar SW:', err));
+    }
+  </script>
 </body>
-
 </html>

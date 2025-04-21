@@ -1,14 +1,23 @@
-self.addEventListener("install", event => {
+self.addEventListener('install', event => {
     event.waitUntil(
-      caches.open("pwa-cache").then(cache =>
-        cache.addAll(["./", "./index.html", "./manifest.json"])
-      )
+      caches.open('hello-pwa-cache').then(cache => {
+        return cache.addAll([
+          '/',
+          '/index.html',
+          '/style.css',
+          '/manifest.json',
+          '/icons/icon-192.png',
+          '/icons/icon-512.png'
+        ]);
+      })
     );
+    self.skipWaiting();
   });
   
-  self.addEventListener("fetch", event => {
+  self.addEventListener('fetch', event => {
     event.respondWith(
-      caches.match(event.request).then(response => response || fetch(event.request))
+      caches.match(event.request)
+        .then(response => response || fetch(event.request))
     );
   });
   
