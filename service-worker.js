@@ -16,22 +16,22 @@ self.addEventListener("install", event => {
   const installBtn = document.getElementById('installBtn');
   
   window.addEventListener('beforeinstallprompt', (e) => {
-    // Previene que el navegador muestre el banner automáticamente
     e.preventDefault();
     deferredPrompt = e;
   
-    // Muestra el botón
-    installBtn.style.display = 'block';
-  
-    installBtn.addEventListener('click', async () => {
-      installBtn.style.display = 'none';
-  
-      if (deferredPrompt) {
-        deferredPrompt.prompt(); // Lanza el modal
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`El usuario eligió: ${outcome}`);
-        deferredPrompt = null;
-      }
-    });
+    installBtn.disabled = false;
+    installBtn.textContent = "📲 Instalar Sherpa";
   });
+  
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`El usuario eligió: ${outcome}`);
+      deferredPrompt = null;
+    } else {
+      alert("Esta app no es instalable en este momento.");
+    }
+  });
+  
   
