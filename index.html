@@ -41,5 +41,16 @@
       document.getElementById('iosTip').style.display = 'block';
     }
   </script>
+   <script>
+    function copiarAlias() {
+        navigator.clipboard.writeText("ine.y.joaco")
+            .then(() => alert("Alias copiado ✅"))
+            .catch(err => alert("Error al copiar 😞"));
+    }
+
+    function abrirMP() {
+        window.location.href = "mercadopago://transfer";
+    }
+</script>
 </body>
 </html>
