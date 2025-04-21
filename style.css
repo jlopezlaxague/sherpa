@@ -1,7 +1,36 @@
 body {
     font-family: sans-serif;
-    text-align: center;
-    margin-top: 50px;
-    background-color: #f9f9f9;
-  }
-  
+    padding: 20px;
+    background: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.copy-btn {
+    background-color: #50007e;
+    color: #fff;
+}
+
+.mp-btn {
+    background-color: #ff5200;
+    color: #fff;
+}

@@ -13,16 +13,32 @@
   <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
 </head>
 <body>
-  <h1>Hello World 🌍</h1>
-  <button id="installBtn" hidden>Instalar App</button>
+    <div class="container">
+        <h2>Recordatorio de pago v3</h2>
+        <p><strong>Monto:</strong> $100</p>
+        <p><strong>Alias:</strong> ine.y.joaco</p>
 
-  <script src="install.js"></script>
-
-  <script>
+        <button class="copy-btn" onclick="copiarAlias()">📋 Copiar alias</button>
+        <button class="mp-btn" onclick="abrirMP()">💸 Abrir en MercadoPago</button>
+        <button id="installBtn">📲 Instalar Sherpa</button>
+    </div>
+    <div id="iosTip" style="display: none;">
+        Para instalar esta app, abrila en Safari y tocá “Agregar a pantalla de inicio” desde el menú de compartir.
+    </div>
+    <script src="install.js"></script>
+    <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('✔ Service Worker registrado'))
         .catch(err => console.error('✖ Error al registrar SW:', err));
+    }
+  </script>
+  <script>
+    const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+    const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+  
+    if (isIos && !isInStandaloneMode) {
+      document.getElementById('iosTip').style.display = 'block';
     }
   </script>
 </body>
