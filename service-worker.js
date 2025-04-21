@@ -13,22 +13,25 @@ self.addEventListener("install", event => {
   });
   
   let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Evita que se muestre el prompt automáticamente
-  e.preventDefault();
-  deferredPrompt = e;
-
-  // Mostrá tu botón de "Instalar"
   const installBtn = document.getElementById('installBtn');
-  installBtn.style.display = 'block';
-
-  installBtn.addEventListener('click', async () => {
-    installBtn.style.display = 'none';
-    deferredPrompt.prompt();
-
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`Instalación: ${outcome}`);
-    deferredPrompt = null;
+  
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Previene que el navegador muestre el banner automáticamente
+    e.preventDefault();
+    deferredPrompt = e;
+  
+    // Muestra el botón
+    installBtn.style.display = 'block';
+  
+    installBtn.addEventListener('click', async () => {
+      installBtn.style.display = 'none';
+  
+      if (deferredPrompt) {
+        deferredPrompt.prompt(); // Lanza el modal
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`El usuario eligió: ${outcome}`);
+        deferredPrompt = null;
+      }
+    });
   });
-});
+  
