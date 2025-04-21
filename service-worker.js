@@ -12,3 +12,23 @@ self.addEventListener("install", event => {
     );
   });
   
+  let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Evita que se muestre el prompt automáticamente
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // Mostrá tu botón de "Instalar"
+  const installBtn = document.getElementById('installBtn');
+  installBtn.style.display = 'block';
+
+  installBtn.addEventListener('click', async () => {
+    installBtn.style.display = 'none';
+    deferredPrompt.prompt();
+
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Instalación: ${outcome}`);
+    deferredPrompt = null;
+  });
+});
