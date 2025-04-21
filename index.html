@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="manifest" href="manifest.json" />
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recordatorio de Pago</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .copy-btn {
+            background-color: #50007e;
+            color: #fff;
+        }
+
+        .mp-btn {
+            background-color: #ff5200;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Recordatorio de pago</h2>
+        <p><strong>Monto:</strong> $100</p>
+        <p><strong>Alias:</strong> ine.y.joaco</p>
+
+        <button class="copy-btn" onclick="copiarAlias()">📋 Copiar alias</button>
+        <button class="mp-btn" onclick="abrirMP()">💸 Abrir en MercadoPago</button>
+    </div>
+
+    <script>
+        function copiarAlias() {
+            navigator.clipboard.writeText("ine.y.joaco")
+                .then(() => alert("Alias copiado ✅"))
+                .catch(err => alert("Error al copiar 😞"));
+        }
+
+        function abrirMP() {
+            window.location.href = "mercadopago://transfer";
+        }
+    </script>
+</body>
+
+</html>
